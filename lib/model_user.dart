@@ -1,80 +1,49 @@
-class data {
+class detailsS {
+  final Map<String, List> datam = new Map<String, List>();
   String? id;
-  String? fullname;
-  String? email;
-  String? cnic;
-  String? phone;
-  String? contract;
-  String? designation;
+  String? brandId;
+  String? brandName;
+  String? start;
+  String? end;
   String? category;
-  String ?totalDiscount;
-  String? dhDiscount;
   String? userDiscount;
-  String? logo;
-  String? headerImage1;
-  String? headerImage2;
-  String? headerImage3;
-  String? address;
+  String? qrCodeImage;
   String? result;
 
-  data(
+  detailsS(
       {this.id,
-        this.fullname,
-        this.email,
-        this.cnic,
-        this.phone,
-        this.contract,
-        this.designation,
+        this.brandId,
+        this.brandName,
+        this.start,
+        this.end,
         this.category,
-        this.totalDiscount,
-        this.dhDiscount,
         this.userDiscount,
-        this.logo,
-        this.headerImage1,
-        this.headerImage2,
-        this.headerImage3,
-        this.address,
+        this.qrCodeImage,
         this.result});
 
-  data.fromJson(Map<String, dynamic> json) {
+  detailsS.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    fullname = json['fullname'];
-    email = json['email'];
-    cnic = json['	cnic'];
-    phone = json['	phone'];
-    contract = json['contract'];
-    designation = json['designation'];
+    brandId = json['brand_id'];
+    brandName = json['brand_name'];
+    start = json['start'];
+    end = json['end'];
     category = json['category'];
-    totalDiscount = json['total_discount'];
-    dhDiscount = json['dh_discount'];
     userDiscount = json['user_discount'];
-    logo = json['logo'];
-    headerImage1 = json['header_image1'];
-    headerImage2 = json['header_image2'];
-    headerImage3 = json['header_image3'];
-    address = json['address'];
+    qrCodeImage = json['qr_code_image'];
     result = json['result'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['fullname'] = this.fullname;
-    data['email'] = this.email;
-    data['	cnic'] = this.cnic;
-    data['	phone'] = this.phone;
-    data['contract'] = this.contract;
-    data['designation'] = this.designation;
-    data['category'] = this.category;
-    data['total_discount'] = this.totalDiscount;
-    data['dh_discount'] = this.dhDiscount;
-    data['user_discount'] = this.userDiscount;
-    data['logo'] = this.logo;
-    data['header_image1'] = this.headerImage1;
-    data['header_image2'] = this.headerImage2;
-    data['header_image3'] = this.headerImage3;
-    data['address'] = this.address;
-    data['result'] = this.result;
-    return data;
+    final Map<String, dynamic> datam = new Map<String, dynamic>();
+    datam['id'] = this.id;
+    datam['brand_id'] = this.brandId;
+    datam['brand_name'] = this.brandName;
+    datam['start'] = this.start;
+    datam['end'] = this.end;
+    datam['category'] = this.category;
+    datam['user_discount'] = this.userDiscount;
+    datam['qr_code_image'] = this.qrCodeImage;
+    datam['result'] = this.result;
+    return datam;
   }
 }

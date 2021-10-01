@@ -1,13 +1,14 @@
 
 
 
+import 'package:flutter/material.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import 'package:flutter/cupertino.dart';
 
-class EligiblityScreenProvider extends ChangeNotifier{
+class EligiblityScreenProvider extends ChangeNotifier {
   Future<List> search(brandname) async {
     var data = {
       'brand_name': brandname,
@@ -25,10 +26,10 @@ class EligiblityScreenProvider extends ChangeNotifier{
       notifyListeners();
       return datas;
     } else {
+
       // If the server did not return a 200 OK response,
       // then throw an exception.
       throw Exception('Failed to load album');
-
     }
   }
 }

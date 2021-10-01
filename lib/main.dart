@@ -9,12 +9,20 @@ import 'package:untitled2/sigin.dart';
 import 'package:untitled2/signin.dart';
 import 'package:http/http.dart' as http;
 import 'package:provider/provider.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
       create: (context) => EligiblityScreenProvider(), child: MyApp()));
 }
+
+// Future<void> mains() async {
+//   SharedPreferences prefs = await SharedPreferences.getInstance();
+//   var status = prefs.getBool('isLoggedIn') ?? false;
+//   print(status);
+//   runApp(MaterialApp(home: status == true ? ChangeNotifierProvider(
+//        create: (context) => EligiblityScreenProvider(),  child: MyApp()) : mainpage()));
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -25,21 +33,13 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:   spalsh(),
+      home: spalsh(),
     );
   }
 }
+
 class spalsh extends StatefulWidget {
   @override
   _spalshState createState() => _spalshState();
@@ -49,9 +49,10 @@ class _spalshState extends State<spalsh> {
   @override
   void initState() {
     super.initState();
+
     Timer(
         Duration(seconds: 5),
-            () => Navigator.pushReplacement(
+        () => Navigator.pushReplacement(
             context,
             PageRouteBuilder(
                 transitionDuration: Duration(seconds: 2),
@@ -65,6 +66,22 @@ class _spalshState extends State<spalsh> {
                     alignment: Alignment.center,
                   );
                 })));
+    navigateUser();
+  }
+
+  void navigateUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    var status = prefs.getBool('isLoggedIn') ?? false;
+    print(status);
+    if (status) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => mainpage()),
+        (route) => false,
+      );
+    } else {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => siginup()), (route) => false);
+    }
   }
 
   @override
@@ -72,14 +89,16 @@ class _spalshState extends State<spalsh> {
     return Container(
       color: Colors.white,
       width: MediaQuery.of(context).size.width,
-
       child: Center(
-        child: Image.asset('assets/splash.png',height: 250,width: 250,),
+        child: Image.asset(
+          'assets/splash.png',
+          height: 250,
+          width: 250,
+        ),
       ),
     );
   }
 }
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title}) : super(key: key);
@@ -160,14 +179,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  const Text(
                     'get discount on your',
                     style: TextStyle(color: Colors.white, fontSize: 15),
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(
+                  const Text(
                     'favroutes brands',
                     style: TextStyle(color: Colors.white, fontSize: 15),
                   ),

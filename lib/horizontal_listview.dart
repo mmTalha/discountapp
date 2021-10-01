@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:http/http.dart' as http;
 import 'home.dart';
-
+import 'package:native_font/native_font.dart';
 class Horizontallist extends StatefulWidget {
   @override
   State<Horizontallist> createState() => _HorizontallistState();
@@ -59,17 +59,17 @@ class _HorizontallistState extends State<Horizontallist> {
         future: fetchAlbum(),
     builder: (context, snapshot) {
       if (!snapshot.hasData) {
-        return Center(child: CircularProgressIndicator());
+
       } else {
         print(' link${snapshot.data}   ');
       }
       return Container(
-        height: 80.0,
+        height: 90.0,
         child: ListView(
           scrollDirection: Axis.horizontal,
           children: [
             category(
-              image_caption: 'shirt',
+              image_caption: 'Shirt',
               image_location: 'assets/watch.jpg',
             ),
             category(
@@ -102,14 +102,17 @@ class category extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         child: Container(
+          height: 230,
           margin: EdgeInsets.all(10),
-          width: 110.0,
+          width: 120.0,
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(10),
             image: DecorationImage(
                 image: AssetImage(
-                  image_location!,
+                  image_location!  ,
+
                 ),
+
                 fit: BoxFit.cover,
                 colorFilter:
                     ColorFilter.mode(Colors.black54, BlendMode.colorBurn)),
@@ -118,7 +121,8 @@ class category extends StatelessWidget {
             padding: const EdgeInsets.all(8.0),
             child: Text(
               image_caption!,
-              style: TextStyle(
+              style: nativeFontTextStyle(
+                  fontFamily: 'Roboto',
                   color: Colors.white,
                   fontSize: 10,
                   fontWeight: FontWeight.w600),

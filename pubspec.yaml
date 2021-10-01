@@ -52,6 +52,16 @@ dev_dependencies:
   cached_network_image: ^3.1.0
   url_launcher: ^6.0.9
   provider: ^6.0.0
+  shared_preferences: ^2.0.7
+  flutter_barcode_scanner: ^2.0.0
+  flutter_typeahead: ^3.2.0
+  google_fonts: ^2.1.0
+  native_font: ^1.1.0
+  awesome_dialog: ^2.1.1
+  extended_image: ^4.0.0
+
+
+
 
 
 
